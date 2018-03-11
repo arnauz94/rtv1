@@ -1,0 +1,9 @@
+CAM		POS x y z 	ROTA x y z
+LIGHT	POS x y z
+
+SPHERE	x y z 
+
+
+
+TYPE possible CAM LIGHT SPHERE CYLINDER CONE PLANE
+
