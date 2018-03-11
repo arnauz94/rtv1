@@ -14,6 +14,31 @@
 # define WIN_LARGE 400
 # define WIN_HAUT 400
 
+
+typedef struct		s_vec
+{
+	float			x;
+	float			y;
+	float			z;
+}					t_vec;
+
+typedef struct		s_color
+{
+	float			r;
+	float			g;
+	float			b;
+}					t_color;
+
+typedef struct		s_obj
+{
+	char*			type;
+	float			size;
+	t_vec			rot;
+	t_vec			pos;
+	t_color			col;
+	struct s_obj	*next;
+}					t_obj;
+
 typedef struct	s_env
 {
 	void		*mlx_ptr;
@@ -25,29 +50,5 @@ typedef struct	s_env
 	int			endian;
 	t_obj		*listobj;
 }				t_env;
-
-typedef struct		s_color
-{
-	float			r;
-	float			g;
-	float			b;
-}					t_color;
-
-typedef struct		s_obj
-{
-	int				type;
-	float			size;
-	t_vec			rot;
-	t_vec			pos;
-	t_color			col;
-	struct s_obj	*next;
-}					t_obj;
-
-typedef struct		s_vec
-{
-	float			x;
-	float			y;
-	float			z;
-}					t_vec;
 
 #endif

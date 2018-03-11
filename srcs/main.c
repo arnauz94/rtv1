@@ -10,8 +10,7 @@ void		init_env(t_env *e)
 
 t_obj		get_obj(char *line)
 {
-	char	**tab
-	int		cpt;
+	char	**tab;
 	t_obj	ret;
 
 	tab = ft_strsplit(line, ' ');
@@ -42,13 +41,27 @@ t_obj		get_obj(char *line)
 		ret.col.g = atoi(tab[9]);
 		ret.col.b = atoi(tab[10]);
 	}
+	else
+	{
+		ret.type = "NOPE";
+	}
+	return (ret);
 }
 
 t_env		add_obj(char *line, t_env e)
 {
 	t_obj obj;
-
+	
 	obj = get_obj(line);
+
+	if (e.listobj == NULL)
+	{
+		if(!(e.listobj = (t_obj*)malloc(sizeof(t_obj))))
+			exit(0);
+		e.listobj = &obj;
+	}
+	else
+		obj.next = e.listobj;
 	return (e);
 }
 
@@ -62,7 +75,7 @@ t_env		read_file(t_env e, char *file)
 	fd = open(file, O_RDONLY);
 	while (get_next_line(fd, &line) == 1)
 	{
-		e = add_obj(line, t_env e);
+		e = add_obj(line, e);
 		ft_strdel(&line);
 		nbline++;
 	}
