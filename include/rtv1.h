@@ -11,8 +11,8 @@
 # include <unistd.h>
 # include <pthread.h>
 
-# define WIN_LARGE 400
-# define WIN_HAUT 400
+# define WIN_LARGE 2000
+# define WIN_HAUT 1200
 
 
 typedef struct		s_vec
@@ -29,14 +29,17 @@ typedef struct		s_color
 	float			b;
 }					t_color;
 
+/*
+** 0 = cam
+** 1 = sphere
+*/
 typedef struct		s_obj
 {
-	char*			type;
+	int				type;
 	float			size;
 	t_vec			rot;
 	t_vec			pos;
-	t_color			col;
-	struct s_obj	*next;
+	t_color			color;
 }					t_obj;
 
 typedef struct	s_env
@@ -48,7 +51,10 @@ typedef struct	s_env
 	int			bpp;
 	int			sizl;
 	int			endian;
-	t_obj		*listobj;
+	t_obj		*tabobj;
+	int			nbobj;
 }				t_env;
+
+t_env			read_file(t_env e, char *file);
 
 #endif
